@@ -23,7 +23,7 @@ const userSchema = new mongoose.Schema({
     salt: String,
     role: {
         type: String,
-        default:'subscriver'
+        default:'subscriber'
     },
     resetPasswordLink: {
         data:String,
@@ -48,13 +48,13 @@ userSchema.methods = {
         return this.encryptPassword(plainText)== this.hashed_password
     },
     encryptPassword: function(password) {
-        if(!password) return ''
+        if(!password) return('')
         try {
             crypto.createHmac('sha1',this.salt)
             .update(password)
             .digest('hex');
         } catch(err) {
-            return ''
+            return ('')
         }
     },
     makeSalt: function(){
