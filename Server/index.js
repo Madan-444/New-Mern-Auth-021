@@ -9,6 +9,16 @@ require('dotenv').config();
 // import routes
 const authRoutes = require('./routes/auth')
 
+// connect to the datatbase
+mongoose.connect(process.env.DATABASE, {
+    useNewUrlParser: true,
+    useFindAndModify: false,
+    useUnifieldTopology: true,
+    useCreateIndex: true
+})
+.then(()=> console.log('DB connected'))
+.catch((err)=> console.log('DB conection Error:',err))
+
 //app middlewares
 app.use(morgan('dev'))
 app.use(bodyParser.json());
