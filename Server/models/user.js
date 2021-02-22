@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const crypto = requuire('crypto');
+const crypto = require('crypto');
 // user schema
 const userScheama = new mongoose.Schema(
     {
@@ -64,7 +64,7 @@ userScheama.methods = {
     },
 
     makeSalt: function() {
-        return Match.round(new Date().valueOf() * Math.random()) + '';
+        return Math.round(new Date().valueOf() * Math.random()) + '';
     }
 };
 
