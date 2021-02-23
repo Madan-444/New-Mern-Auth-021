@@ -31,10 +31,20 @@ function Layout({ children, match,history }) {
         )
       }
             {
-        isAuth() && (
+        isAuth() && isAuth().role=== 'admin' && (
 
             <li className='nav-item nav-link'>
-             <span className='nav-link' > {isAuth().name} </span>
+             <Link className='nav-link' to= '/admin' style={isActive('/admin')}> {isAuth().name} </Link>
+            </li>
+
+        )
+      }
+      
+      {
+        isAuth() && isAuth().role=== 'subscriber' && (
+
+            <li className='nav-item nav-link'>
+             <Link className='nav-link' to= '/private' style={isActive('/subscriber')}> {isAuth().name} </Link>
             </li>
 
         )

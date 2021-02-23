@@ -43,7 +43,7 @@ function Activate({match}) {
     const ActivationLink = ()=> (
         <div className=' text-center'>
             <h1 className='p-5'> Hey {name} , Ready to activate your Account ? </h1>
-            <button className='btn btn-outline-primary' onClick = {clickSubmit}> Acitvate Account </button>
+            <button className='btn btn-outline-primary' onClick = {clickSubmit}>  Activate Account </button>
         </div>
     )
 
