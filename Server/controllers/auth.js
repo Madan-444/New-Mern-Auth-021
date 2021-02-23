@@ -1,7 +1,7 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const sgMail = require('@sendgrid/mail')
-sgMail.setApiKey(process.env.SEND_GRID_API)
+sgMail.setApiKey(process.env.SEND_GRID_API_KEY)
 exports.signup = (req, res) => {
     const { name, email, password } = req.body
     User.findOne({ email }).exec((err, user) => {
@@ -31,9 +31,10 @@ exports.signup = (req, res) => {
                 message: `Email has been sent to ${email}. Follow rule to activate your account`
             })
         })
-        .catch(err=> {
+        .catch(error=> {
+            console.log('there is mistake')
             return res.json({
-                message: err.message
+                message: error.message
             })
         })
     })
