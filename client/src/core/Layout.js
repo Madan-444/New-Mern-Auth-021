@@ -1,15 +1,29 @@
 import React, {Fragment} from 'react'
-import  {Link} from 'react-router-dom'
+import  {Link,withRouter} from 'react-router-dom'
 
-function Layout({children}) {
+function Layout({children,match}) {
+
+  const isActive = path=> {
+    if(match.path === path) {
+      return {color: '#000'}
+     
+      }
+      else {
+        return {color: '#fff'}
+    }
+  }
     const nav = ()=> (
         <ul className="nav nav-tabs bg-primary">
           <li className='nav-item nav-link'>
-            <Link to="/" className="text-light">Home</Link>
+            <Link to="/" style={isActive('/')}>Home  </Link>
           </li>
           <li className='nav-item nav-link'>
-            <Link to="/signup" className="text-light">SignUp</Link>
+            <Link to="/signin"  style={isActive('/signin')}>SignIn</Link>
           </li>
+          <li className='nav-item nav-link'>
+            <Link to="/signup" style={isActive('/signup')}>SignUp</Link>
+          </li>
+  
         </ul>
       )
     return (
@@ -22,4 +36,4 @@ function Layout({children}) {
     )
 }
 
-export default Layout
+export default withRouter(Layout)
