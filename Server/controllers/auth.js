@@ -1,6 +1,6 @@
 const User = require('../models/user')
 const jwt = require('jsonwebtoken')
-const expressJWT = require('express-jwt')
+const expressJwt = require('express-jwt')
 const sgMail = require('@sendgrid/mail')
 sgMail.setApiKey(process.env.SEND_GRID_API_KEY)
 exports.signup = (req, res) => {
@@ -104,9 +104,10 @@ exports.accountActivation = (req,res)=> {
         })
     }
 
-    // exports.requireSignIn = expressJWT({
-    //     secret: process.env.JWT_SECRET
-    // })
+    exports.requireSignIn = expressJwt({
+        secret: process.env.JWT_SECRET,
+        algorithms:  ['HS256'] // this is not told in lecture so add this
+    })
 
 // exports.signup = (req,res)=> {
 //     // console.log('The user data is',req.body)
