@@ -34,7 +34,7 @@ function Layout({ children, match,history }) {
         isAuth() && isAuth().role=== 'admin' && (
 
             <li className='nav-item nav-link'>
-             <Link className='nav-link' to= '/admin' style={isActive('/admin')}> {isAuth().name} </Link>
+             <Link className='nav-link' to= '/admin' style={isActive('/admin')}> {isAuth().name}  </Link>
             </li>
 
         )
@@ -44,7 +44,7 @@ function Layout({ children, match,history }) {
         isAuth() && isAuth().role=== 'subscriber' && (
 
             <li className='nav-item nav-link'>
-             <Link className='nav-link' to= '/private' style={isActive('/subscriber')}> {isAuth().name} </Link>
+             <Link className='nav-link' to= '/private' style={isActive('/private')}> {isAuth().name} </Link>
             </li>
 
         )

@@ -94,7 +94,7 @@ exports.accountActivation = (req,res)=> {
                 })
             }
             // generate a token and send to client
-            const token = jwt.sign({_id: user._id},process.env.JWT_SECRET, {expiresIn: '7d'})
+            const token = jwt.sign({_id: user._id},process.env.JWT_SECRET, {expiresIn: '1d'})
             const {_id, name,email,role} = user
 
             return res.json({
@@ -108,6 +108,23 @@ exports.accountActivation = (req,res)=> {
         secret: process.env.JWT_SECRET,
         algorithms:  ['HS256'] // this is not told in lecture so add this
     })
+
+    exports.adminMiddleWare = (req,res,next) => {
+        User.findById({_id: req.user._id}).exec((err,user)=> {
+            if(err || !user){
+                return res.status(400).json({
+                    error: 'User not found'
+                });
+            }
+            if(user.role != 'admin') {
+                return res.status(400).json({
+                    error: 'Admin Resorce. Access denied'
+                });
+            }
+            req.profile = user
+            next();
+        })
+    }
 
 // exports.signup = (req,res)=> {
 //     // console.log('The user data is',req.body)
