@@ -4,9 +4,10 @@ const router = express.Router()
 // const {requireSignIn} = require('../controllers/auth')
 const { requireSignIn } = require('../controllers/auth')
 
-const {read} = require('../controllers/user')
+const {read , update} = require('../controllers/user')
 
 router.get('/user/:id', requireSignIn, read)
+router.put('/user/update', requireSignIn, update)
 
 
 module.exports = router
