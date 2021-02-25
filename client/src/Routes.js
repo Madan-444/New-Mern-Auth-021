@@ -5,6 +5,7 @@ import SignUp from './Auth/SignUp'
 import SignIn from './Auth/SignIn'
 import Activate from './Auth/Activate'
 import Private from './core/Private'
+import Forgot from './Auth/Forgot'
 
 import PrivateRoute from './Auth/PrivateRoute'
 import Admin from './core/Admin'
@@ -20,6 +21,7 @@ const Routes = ()=> {
             <PrivateRoute path = '/private' exact component={Private} />
             {/* <Route path ='/admin' component = {Admin } /> */}
             <AdminRoute path = '/admin' component= {Admin} />
+            <Route path= '/auth/password/forgot' exact component ={Forgot} />
 
             
         </Switch>
