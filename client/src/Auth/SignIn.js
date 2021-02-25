@@ -66,6 +66,8 @@ function SignIn({history}) {
            {isAuth() ? <Redirect to= '/' /> :null}
             <h1 className='p-5 text-center'>Sign In</h1>
             {signInForm()}
+            <br />
+            <Link to ='/auth/password/forgot'> Forgot password ?? </Link>
            </div>
            
         </Layout>
