@@ -20,6 +20,16 @@ function SignIn({history}) {
         // console.log(event.target.value)
         setValues({...values, [name]: event.target.value})
     }
+
+    const infomParent = (response)=> {
+
+        console.log("What i receive din signin::",response)
+        authenticate(response,()=> {
+            isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private')
+           
+        })
+    }
+
     const clickSubmit = (event)=> {
         event.preventDefault()
         setValues({...values,buttonText: 'Submitting'})
@@ -32,6 +42,7 @@ function SignIn({history}) {
             console.log('SIGNUP SUCCESS',response)
             // save the response (user and token) in localstorage/cookie
             authenticate(response,()=> {
+                console.log('This is responoses',response)
                 setValues({...values,name: '',email:'',password: "", buttonText:'Submitted'})
                 isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private')
                 // toast.success(` Hey ${response.data.user.name}, Welcome To You`)
@@ -67,7 +78,7 @@ function SignIn({history}) {
            {isAuth() ? <Redirect to= '/' /> :null}
             <h1 className='p-5 text-center'>Sign In</h1>
 
-            <Google />
+            <Google infom = {infomParent} />
             {signInForm()}
             <br />
             <Link to ='/auth/password/forgot'> Forgot password ?? </Link>

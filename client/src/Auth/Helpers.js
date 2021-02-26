@@ -46,27 +46,25 @@ export const removeLocalStorage = key=> {
     
 }
 // authenticate user by passing data to cookie and localstorage during signin
-export const authenticate = (response,next)=> {
-    console.log('AUTHENTICATE HELPER ON SOGNIN RESPONSE')
-    setCookie('token',response.data.token)
-    setLocalStorage('user',response.data.user)
+export const authenticate = (response, next) => {
+    console.log('AUTHENTICATE HELPER ON SIGNIN RESPONSE', response);
+    setCookie('token', response.data.token);
+    setLocalStorage('user', response.data.user);
     next();
-}
-//  access user info from lovalstorage
-
-export const isAuth = ()=> {
-    if(window != 'undefined') {
-        const cookieChecked = getCookie('token')
-        if(cookieChecked) {
-            if(localStorage.getItem('user')) {
+};
+// access user info from localstorage
+export const isAuth = () => {
+    if (window !== 'undefined') {
+        const cookieChecked = getCookie('token');
+        if (cookieChecked) {
+            if (localStorage.getItem('user')) {
                 return JSON.parse(localStorage.getItem('user'));
-
             } else {
-                return false
+                return false;
             }
         }
     }
-}
+};
 
 export const signout = next => {
     removeCookie('token')

@@ -256,14 +256,8 @@ exports.googleLogin = (req, res) => {
                 error: 'Google login failed. Try again'
             });
         }
-    })
-    .catch(error => {
-        res.json({
-            error: 'Google login failed. Try later'
-        });
     });
 };
-
 // exports.signup = (req,res)=> {
 //     // console.log('The user data is',req.body)
 //     // res.json({
