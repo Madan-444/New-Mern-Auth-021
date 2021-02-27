@@ -6,6 +6,7 @@ import {authenticate,isAuth} from './Helpers'
 import { ToastContainer, toast} from 'react-toastify'
 import "react-toastify/dist/ReactToastify.min.css"
 import Google from './Google'
+import Facebook from './Facebook'
 
 function SignIn({history}) {
     const [values,setValues] = useState({
@@ -79,6 +80,7 @@ function SignIn({history}) {
             <h1 className='p-5 text-center'>Sign In</h1>
 
             <Google infom = {infomParent} />
+            <Facebook />
             {signInForm()}
             <br />
             <Link to ='/auth/password/forgot'> Forgot password ?? </Link>
