@@ -24,7 +24,7 @@ function SignIn({history}) {
 
     const infomParent = (response)=> {
 
-        console.log("What i receive din signin::",response)
+        console.log("What i received in signin::",response)
         authenticate(response,()=> {
             isAuth() && isAuth().role === 'admin' ? history.push('/admin') : history.push('/private')
            
@@ -80,7 +80,7 @@ function SignIn({history}) {
             <h1 className='p-5 text-center'>Sign In</h1>
 
             <Google infom = {infomParent} />
-            <Facebook />
+            <Facebook parentMethod = {infomParent} />
             {signInForm()}
             <br />
             <Link to ='/auth/password/forgot'> Forgot password ?? </Link>

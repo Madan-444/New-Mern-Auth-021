@@ -2,23 +2,23 @@ import React from 'react';
 import FacebookLogin from 'react-facebook-login/dist/facebook-login-render-props'
 import axios from 'axios';
 
-const Facebook = ({ infom }) => {
+const Facebook = ({ parentMethod }) => {
 
     const responseFacebook = response => {
-        console.log(response.tokenId);
+        console.log('Here is response Id',response.email);
         axios({
             method: 'POST',
             url: `${process.env.REACT_APP_API}/facebook-login`,
-            data: { userID: response.userID,accessToken: response.accessToken }
+            data: { userID: response.userID,accessToken: response.accessToken,email: response.email }
         })
             .then(response => {
-                console.log('Facebook SIGNIN SUCCESS', response);
+                console.log('Facebook SIGNIN SUCCESS xa hai la', response);
                 // inform parent component
-                infom(response);
+                parentMethod(response);
 
             })
             .catch(error => {
-                console.log('Facebook SIGNIN ERROR', error.response);
+                console.log('Facebook SIGNIN ERROR fuck yah', error.response);
             });
     };
     return (
@@ -26,6 +26,7 @@ const Facebook = ({ infom }) => {
             <FacebookLogin
                 appId=  {`${process.env.REACT_APP_FACEBOOK_APP_ID}`}
                 autoLoad = {false}
+                fields="name,email,picture"
                 callback={responseFacebook}
                 render={renderProps => (
                     <button
