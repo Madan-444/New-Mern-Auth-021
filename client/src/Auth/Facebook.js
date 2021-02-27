@@ -5,22 +5,21 @@ import axios from 'axios';
 const Facebook = ({ infom }) => {
 
     const responseFacebook = response => {
-        // console.log(response.tokenId);
-        // axios({
-        //     method: 'POST',
-        //     url: `${process.env.REACT_APP_API}/google-login`,
-        //     data: { idToken: response.tokenId }
-        // })
-        //     .then(response => {
-        //         console.log('GOOGLE SIGNIN SUCCESS', response);
-        //         // inform parent component
-        //         infom(response);
+        console.log(response.tokenId);
+        axios({
+            method: 'POST',
+            url: `${process.env.REACT_APP_API}/facebook-login`,
+            data: { userID: response.userID,accessToken: response.accessToken }
+        })
+            .then(response => {
+                console.log('Facebook SIGNIN SUCCESS', response);
+                // inform parent component
+                infom(response);
 
-        //     })
-        //     .catch(error => {
-        //         console.log('GOOGLE SIGNIN ERROR', error.response);
-        //     });
-        console.log('The facebook response is=:',response)
+            })
+            .catch(error => {
+                console.log('Facebook SIGNIN ERROR', error.response);
+            });
     };
     return (
         <div className="pb-3">
